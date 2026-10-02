@@ -1,0 +1,27 @@
+name: Primeiro Workflow CI
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  executar-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Baixar conteúdo do repositório
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar o ambiente Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 3. Listar arquivos do projeto
+        run: ls -la
+
+      - name: 4. Executar script Node.js mínimo
+        run: node index.js
+
+      - name: 5. Imprimir mensagem no console
+        run: echo "Pipeline executada com sucesso!"
